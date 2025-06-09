@@ -1,0 +1,33 @@
+1.- Duplicar el micro-servicio-productos-swagger-openapi   en micro-servicio-productos-kafka
+
+2.- Crear el productor en com.viewnext.kafka
+
+		metodo enviarComentario(String comentario)    viewnext-cluster
+
+
+3.- En ProductosREST:
+
+		// http://localhost:xxxxx/enviar/2/mensaje/Producto de calidad y bien de precio
+		@Get
+		public void envios(Long id, string mensaje){
+			// buscar el producto
+			// crear un comentario = producto + mensaje
+			// enviarlo
+		}
+
+
+4.- Nuevo microservicio     micro-servicio-valoraciones   en el puerto 8014 cliente de Eureka
+
+	com.viewnext.models crear la entidad Valoracion contra la BBDD h2  y la tabla VALORACIONES
+		private int ID;  // incremental
+		private String mensaje
+
+	com.viewnext.persistence
+		ValoracionesDAO
+
+	com.viewnext.business
+		Crear la interface IValoracionesBS con el metodo:  void crearValoracion(String mensaje)
+		Crear la clase ValoracionesBSImpl con el dao para guardar la valoracion en la BBDD
+
+	com.viewnext.kafka
+		Crear el consumidor que recibe el comentario y lo envia a la capa de business
